@@ -7,6 +7,7 @@ wss.on('connection', function connection(ws) {
 
     ws.on('message', function incoming(message) {
         console.log('received: %s %s', message, Date.now());
+        ws.send('Recibido:', Date.now());
     });
-    ws.send('Recibido:', Date.now);
+    
 });
