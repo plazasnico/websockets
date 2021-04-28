@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba WebSocket</title>
+</head>
+<body>
+    <button id="start">Send Request</button>
+    <p id="result">Response: </p>
+</body>
+<script>
+    const socket = new WebSocket("ws://localhost:8887");
+    const result = document.getElementById("result");
+    const start = document.getElementById("start");
+    socket.binaryType="arraybuffer";
+
+    start.addEventListener("click", connectWebsocket, false);
+    
+    function connectWebsocket(ev){
+        socket.send("getInformationDevice");
+    }
+
+    socket.onclose = (ev)=>{
+        result.innerHTML += "<br> Connection Closed!";
+    }
+
+    socket.onmessage = (ev)=>{
+        result.innerHTML += "<br>" + ev.data;
+    }
+
+    socket.onopen = (ev)=>{
+        result.innerHTML += "<br> Conected!";
+    }
+
+</script>
+</html>
