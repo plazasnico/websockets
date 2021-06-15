@@ -19,7 +19,7 @@
     start.addEventListener("click", connectWebsocket, false);
     
     function connectWebsocket(ev){
-        socket.send("getInformationDevic");
+        socket.send("getInformationDevice");
     }
 
     socket.onclose = (ev)=>{
